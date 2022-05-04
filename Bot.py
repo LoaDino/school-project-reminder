@@ -16,20 +16,63 @@ from EventGetter import EventGetter
 
 eg = EventGetter()
 
-associative_dict = {"Математика": ["https://olimpiada.ru/activity/72", "https://olimpiada.ru/activity/149"],
+associative_dict = {
+    "Математика": [
+        "https://olimpiada.ru/activity/72", "https://olimpiada.ru/activity/149",
+        "https://olimpiada.ru/activity/1", "https://olimpiada.ru/activity/348",
+        "https://olimpiada.ru/activity/443", "https://olimpiada.ru/activity/395",
+        "https://olimpiada.ru/activity/246"
+    ],
                     
-                    "Русский язык": ["https://olimpiada.ru/activity/80", "https://olimpiada.ru/activity/160"],
+    "Русский язык": [
+        "https://olimpiada.ru/activity/80", "https://olimpiada.ru/activity/160"
+    ],
                     
-                    "Информатика": ["https://olimpiada.ru/activity/73", "https://olimpiada.ru/activity/153"],
+    "Информатика": [
+        "https://olimpiada.ru/activity/73", "https://olimpiada.ru/activity/153",
+        "https://olimpiada.ru/activity/102", "https://olimpiada.ru/activity/5371",
+        "https://olimpiada.ru/activity/343", "https://olimpiada.ru/activity/465",
+        "https://olimpiada.ru/activity/5283"
+    ],
                     
-                    "Всероссийская Олимпиада Школьников": [ "https://olimpiada.ru/activity/73",
-                                                            "https://olimpiada.ru/activity/72",
-                                                            "https://olimpiada.ru/activity/80" ],
+    "Всероссийская Олимпиада Школьников": [ 
+        "https://olimpiada.ru/activity/73", "https://olimpiada.ru/activity/72",
+        "https://olimpiada.ru/activity/80" 
+    ],
                     
-                    "Высшая проба": [ "https://olimpiada.ru/activity/153",
-                                      "https://olimpiada.ru/activity/149",
-                                      "https://olimpiada.ru/activity/160" ]
-                    }
+    "Высшая проба": [
+        "https://olimpiada.ru/activity/153", "https://olimpiada.ru/activity/149",
+        "https://olimpiada.ru/activity/160"
+    ],
+
+    "Московская олимпиада": [
+        "https://olimpiada.ru/activity/1", "https://olimpiada.ru/activity/102"
+    ],
+
+    "Ломоносов": [
+        "https://olimpiada.ru/activity/348", "https://olimpiada.ru/activity/343"
+    ],
+
+    "Олимпиада СПбГУ": [
+        "https://olimpiada.ru/activity/465", "https://olimpiada.ru/activity/443"
+    ],
+
+    "Физтех": [
+        "https://olimpiada.ru/activity/395"
+    ],
+
+    "Санкт-Петербургская олимпиада школьников": [
+        "https://olimpiada.ru/activity/246"
+    ],
+
+    "ТехноКубок": [
+        "https://olimpiada.ru/activity/5371"
+    ],
+
+    "Innopolis Open": [
+        "https://olimpiada.ru/activity/5283"
+    ]
+}
 
 #----------------------------------------------------------------------------------------------------------------------------
 
@@ -82,10 +125,17 @@ for name in subjects_names:
 
 #----------------------------------------------------------------------------------------------------------------------------
 
-olympiads_names = ["Всероссийская Олимпиада Школьников", "Высшая проба"]
+olympiads_names = [
+    "Всероссийская Олимпиада Школьников", "Высшая проба",
+    "Московская олимпиада", "Ломоносов",
+    "Олимпиада СПбГУ", "Физтех",
+    "Санкт-Петербургская олимпиада школьников", "ТехноКубок",
+    "Innopolis Open"
+]
 
 keyboard_olympiads = VkKeyboard(one_time = False, inline = True)
 
+i = 1
 for name in olympiads_names:
     keyboard_olympiads.add_callback_button(
                                            label = name,
@@ -93,8 +143,10 @@ for name in olympiads_names:
                                            payload = {"type": "olympiad_type", "name": name}
                                           )
     
-    if name != olympiads_names[-1]:
+    if i%3 == 0 and name != olympiads_names[-1]:
         keyboard_olympiads.add_line()
+
+    i += 1
 
 #----------------------------------------------------------------------------------------------------------------------------
 
@@ -265,6 +317,7 @@ for event in longpoll.listen():
                 12 : 'декабря'
             }
 
+            k = 0
             for url in associative_dict[event_name]:
                 info = eg.getEvent(url)
 
@@ -328,8 +381,10 @@ for event in longpoll.listen():
                             }
                 )
 
-                if url != associative_dict[event_name][-1]:
+                if i%3 ==0 and url != associative_dict[event_name][-1]:
                     ans_keyboard.add_line()
+
+                k += 1
 
 
 

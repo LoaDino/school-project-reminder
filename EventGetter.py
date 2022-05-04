@@ -1,11 +1,3 @@
-#https://olimpiada.ru/activity/73 всош инфа
-#https://olimpiada.ru/activity/72 всош матеша
-#https://olimpiada.ru/activity/80 всош русский
-#https://olimpiada.ru/activity/153 высшая проба инфа
-#https://olimpiada.ru/activity/149 вп матеша
-#https://olimpiada.ru/activity/160 вп русский
-
-
 import requests
 from lxml import html
 
@@ -19,7 +11,18 @@ class EventGetter:
             "https://olimpiada.ru/activity/80": "Всероссийская Олимпиада Школьников",
             "https://olimpiada.ru/activity/153": "Высшая проба",
             "https://olimpiada.ru/activity/149": "Высшая проба",
-            "https://olimpiada.ru/activity/160": "Высшая проба"
+            "https://olimpiada.ru/activity/160": "Высшая проба",
+            "https://olimpiada.ru/activity/1": "Московская олимпиада",
+            "https://olimpiada.ru/activity/102": "Московская олимпиада",
+            "https://olimpiada.ru/activity/348": "Ломоносов",
+            "https://olimpiada.ru/activity/343": "Ломоносов",
+            "https://olimpiada.ru/activity/465": "Олимпиада СПбГУ",
+            "https://olimpiada.ru/activity/443": "Олимпиада СПбГУ",
+            "https://olimpiada.ru/activity/395": "Физтех",
+            "https://olimpiada.ru/activity/246":"Санкт-Петербургская олимпиада школьников",
+            "https://olimpiada.ru/activity/5371": "ТехноКубок",
+            "https://olimpiada.ru/activity/5283": "Innopolis Open"
+
         }
 
         subjects = {
@@ -28,7 +31,17 @@ class EventGetter:
             "https://olimpiada.ru/activity/80": "Русский язык",
             "https://olimpiada.ru/activity/153": "Информатика",
             "https://olimpiada.ru/activity/149": "Математика",
-            "https://olimpiada.ru/activity/160": "Русский язык"
+            "https://olimpiada.ru/activity/160": "Русский язык",
+            "https://olimpiada.ru/activity/1": "Математика",
+            "https://olimpiada.ru/activity/348": "Математика",
+            "https://olimpiada.ru/activity/443": "Математика",
+            "https://olimpiada.ru/activity/395": "Математика",
+            "https://olimpiada.ru/activity/246": "Математика",
+            "https://olimpiada.ru/activity/102": "Информатика",
+            "https://olimpiada.ru/activity/5371": "Информатика",
+            "https://olimpiada.ru/activity/343": "Информатика",
+            "https://olimpiada.ru/activity/465": "Информатика",
+            "https://olimpiada.ru/activity/5283": "Информатика"
         }
 
         subject = subjects[url]
@@ -60,7 +73,7 @@ class EventGetter:
             "фев" : 2,
             "мар" : 3,
             'апр' : 4,
-            'май' : 5,
+            'мая' : 5,
             'июн' : 6,
             'июл' : 7,
             'авг' : 8,
